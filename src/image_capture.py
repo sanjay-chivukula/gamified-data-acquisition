@@ -36,7 +36,10 @@ class ImageCaptureProcess(Process):
 
 
 def preprocess_frame(frame):
-    pass
+    frame = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
+    frame = cv2.resize(
+        frame, (constants.IMAGE_HEIGHT, constants.IMAGE_WIDTH))
+    return frame
 
 
 def store_data(payload: CaptureSignalPayload):
