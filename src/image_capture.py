@@ -1,4 +1,5 @@
 from multiprocessing import Process, Event
+from data_models import CaptureSignalPayload
 
 import cv2
 
@@ -18,23 +19,25 @@ class ImageCaptureProcess(Process):
 
         while not self.quit_event.is_set():
             ret, frame = self.cap.read()
-            data = self.capture_signal.data
+            payload = self.capture_signal.payload
 
-            if data.is_capture:
-                data.frame = self.preprocess_frame(frame)
-                self.store_data(data)
-                data.is_capture = False
+            if payload.is_capture:
+                payload.frame = preprocess_frame(frame)
+                store_data(payload)
+                payload.is_capture = False
 
         self.quit()
-
-    def preprocess_frame(self, frame):
-        pass
-
-    def store_data(self, data):
-        pass
 
     def quit(self):
         if self.cap:
             self.cap.release()
         self.cap = None
         self.quit_event.set()
+
+
+def preprocess_frame(frame):
+    pass
+
+
+def store_data(payload: CaptureSignalPayload):
+    pass
