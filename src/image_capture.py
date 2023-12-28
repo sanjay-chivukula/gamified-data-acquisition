@@ -2,6 +2,8 @@ from multiprocessing import Process, Event
 
 import cv2
 
+import constants
+
 
 class ImageCaptureProcess(Process):
     def __init__(self, device, capture_signal, quit_event):
@@ -16,9 +18,20 @@ class ImageCaptureProcess(Process):
 
         while not self.quit_event.is_set():
             ret, frame = self.cap.read()
-            pass
+            data = self.capture_signal.data
+
+            if data.is_capture:
+                data.frame = self.preprocess_frame(frame)
+                self.store_data(data)
+                data.is_capture = False
 
         self.quit()
+
+    def preprocess_frame(self, frame):
+        pass
+
+    def store_data(self, data):
+        pass
 
     def quit(self):
         if self.cap:
