@@ -9,6 +9,7 @@ import numpy as np
 class CaptureSignalPayload:
     is_capture: bool
     is_face_aligned: bool
+    session_id: str
     target_pos: Tuple[int, int]
 
 
