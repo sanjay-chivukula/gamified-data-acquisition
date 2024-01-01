@@ -8,9 +8,8 @@ import numpy as np
 @dataclass
 class CaptureSignalPayload:
     is_capture: bool
+    is_face_aligned: bool
     target_pos: Tuple[int, int]
-    frame: np.ndarray
-    timestamp: datetime
 
 
 @dataclass
