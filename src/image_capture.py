@@ -2,7 +2,7 @@ from multiprocessing import Process, Event, Value
 
 
 class ImageCaptureProcess(Process):
-    def __init__(self, device, capture_signal, quit_event):
+    def __init__(self, shared_event: Event, device):
         super().__init__()
         pass
 
