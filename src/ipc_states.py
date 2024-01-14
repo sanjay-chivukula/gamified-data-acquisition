@@ -23,5 +23,6 @@ class SharedEventStateData:
     game_state: GameState
     face_state: FaceState
     camera_state: CameraState
+    init_capture: bool
     is_capture: bool
     target_pos: tuple
